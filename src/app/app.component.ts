@@ -1,7 +1,7 @@
 import { OnInit, AfterViewInit, Component, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DataTable } from 'datatables.net-editor';
-import { Editor } from 'datatables.net-editor';
+import DataTables from 'datatables.net';
+import Editor from 'datatables.net-editor';
 declare var $: any;
 
 
@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
 	populateDataTable(isEditable = false) {
 
 		if (isEditable) {
-			var editor = new DataTable.Editor({
+			var editor = new Editor({
 				ajax: '../php/staff.php',
 				fields: [
 					{
