@@ -13,6 +13,7 @@ declare var $: any;
 export class AppComponent implements OnInit {
 	editor: any;
 	isEditorEnabled = false;
+	test: any;
 	title = 'Angular15App';
 	dataSet = [
 		['Tiger Nixon', 'System Architect', 'Edinburgh', '5421', '2011/04/25', '$320,800'],
@@ -63,43 +64,38 @@ export class AppComponent implements OnInit {
 
 	populateDataTable(isEditable = false) {
 
-		if (isEditable) {
-			var editor = new Editor({
-				ajax: '../php/staff.php',
-				fields: [
-					{
-						label: 'First name:',
-						name: 'first_name'
-					},
-					{
-						label: 'Last name:',
-						name: 'last_name'
-					},
-					{
-						label: 'Position:',
-						name: 'position'
-					},
-					{
-						label: 'Office:',
-						name: 'office'
-					},
-					{
-						label: 'Extension:',
-						name: 'extn'
-					},
-					{
-						label: 'Start date:',
-						name: 'start_date',
-						type: 'datetime'
-					},
-					{
-						label: 'Salary:',
-						name: 'salary'
-					}
-				],
-				table: '#example'
-			});
-		}
+
+		// var editor = new Editor({
+		// 	ajax: '../php/staff.php',
+		// 	fields: [
+		// 		{
+		// 			label: 'First name:',
+		// 			name: 'first_name'
+		// 		},
+		// 		{
+		// 			label: 'Last name:',
+		// 			name: 'last_name'
+		// 		},
+		// 		{
+		// 			label: 'Position:',
+		// 			name: 'position'
+		// 		},
+		// 		{
+		// 			label: 'Office:',
+		// 			name: 'office'
+		// 		},
+		// 		{
+		// 			label: 'Extension:',
+		// 			name: 'extn'
+		// 		},
+		// 		{
+		// 			label: 'Salary:',
+		// 			name: 'salary'
+		// 		}
+		// 	],
+		// 	table: '#example'
+		// });
+
 
 		console.log($('#example'));
 		$('#example').DataTable({
@@ -108,10 +104,13 @@ export class AppComponent implements OnInit {
 				{ title: 'Position' },
 				{ title: 'Office' },
 				{ title: 'Extn.' },
-				{ title: 'Start date' },
 				{ title: 'Salary' }
 			],
 			data: this.dataSet
+		});
+		$('#example').DataTable.on('open', function (e, type) {
+			// Type is 'main', 'bubble' or 'inline'
+			alert('Editor ' + type + ' form shown');
 		});
 	}
 
